@@ -46,10 +46,9 @@ def crawl_main():
             video_url_rmwm = video_url.replace("playwm", "play", 1)  # 链接去水印
             print('下载中.......')
             start_time = time.time()
-            video_src = requests.get(url=video_url_rmwm, headers=headers, stream=True)
+            video_src = requests.get(url=video_url_rmwm, headers=headers).content
             with open(f'{video_name_fix}.mp4', 'wb') as f:  # 存入当前目录
-                for i in video_src.iter_content(10000):  # 边下边存入硬盘
-                    f.write(i)
+                f.write(video_src)
             end_time = time.time()
             spend_time = format(end_time - start_time, '.2f')
             print(f'下载完成!!!\t共花费 {spend_time} 秒\n')
@@ -64,10 +63,9 @@ def crawl_main():
             start_time = time.time()
             for i in list_url:
                 print('下载中')
-                images_response = requests.get(url=i, headers=headers, stream=True)  # 获取图集的数据流
+                images_response = requests.get(url=i, headers=headers).content  # 获取图集的数据流
                 with open(f'{count}.jpeg', 'wb') as f:
-                    for b in images_response.iter_content(10000):
-                        f.write(b)
+                    f.write(images_response)
                 count = count + 1
                 print(f'图{count}下载完成!')
             end_time = time.time()

@@ -50,10 +50,9 @@ def download(videoname, videourl):
     for (name, url) in zip(videoname, videourl):
         count += 1
         print(f'第{count}个视频正在下载')
-        data = requests.get(url=url, headers=headers, stream=True)
+        data = requests.get(url=url, headers=headers).content
         with open(f'{name}.mp4', 'wb') as f:  # 存入当前目录
-            for i in data.iter_content(10000):  # 边下边存入硬盘
-                f.write(i)
+            f.write(data)
         print(f'第{count}个视频下载完成')
 
 
@@ -67,4 +66,3 @@ if __name__ == '__main__':
     end_time = time.time()
     cost_time = format(end_time - start_time, '.2f')
     print(f'{video_info[0]}全部下载完成,共花费时间 {cost_time} s')
-

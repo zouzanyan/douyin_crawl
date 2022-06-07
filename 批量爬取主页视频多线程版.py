@@ -21,10 +21,9 @@ def fixname(filename):
 
 
 def download(videourl, videoname):
-    data = requests.get(url=videourl, headers=headers, stream=True)
+    data = requests.get(url=videourl, headers=headers).content
     with open(f'{videoname}.mp4', 'wb') as f:  # 存入当前目录
-        for i1 in data.iter_content(10000):  # 边下边存入硬盘
-            f.write(i1)
+        f.write(data)
 
 
 if __name__ == '__main__':

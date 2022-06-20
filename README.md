@@ -1,5 +1,5 @@
 # douyin_crawl
-抖音视频爬取
+抖音视频批量爬取
 
 开发工具
 windows10

@@ -48,6 +48,7 @@ def get_video_info(sec_uid):
     videourl = []
     videoname = []
     authorname = 0
+    print('解析页面中...')
     while 1:
         pageurl = f'https://www.iesdouyin.com/web/api/v2/aweme/post/?sec_uid={sec_uid}&count=15&max_cursor={max_cursor}'
         listpage = requests.get(url=pageurl, headers=headers).text
@@ -88,6 +89,7 @@ def crawl_main(number):
     os.mkdir(f'{author_name}')  # 新建下载文件夹
     os.chdir(f'./{author_name}/')
 
+    print('正在批量下载,请耐心等待...')
     with ThreadPoolExecutor(100) as executor:  # 创建一个容纳100个线程的线程池
         for i in range(video_number):
             video_url = video_url_list[i]
@@ -95,7 +97,7 @@ def crawl_main(number):
             executor.map(download, {video_url}, {video_name})
     end_time = time.time()
     cost_time = format(end_time - start_time, '.2f')
-    print(f'{video_number}全部下载完成,共花费时间 {cost_time} s')
+    print(f'{video_number}个视频已全部下载完成,共花费时间 {cost_time} s')
     os.chdir('..')
 
 

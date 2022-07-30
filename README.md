@@ -36,8 +36,7 @@ https://www.douyin.com/user/MS4wLjABAAAAMWnCuaM1kNwVyN5P1f9OL5w1zWVuCGImgfF8j4rY
 
 22/6/1  加入对抖音图集爬取的功能 <br>
 22/6/5  加入对抖音用户作品的批量爬取  <br>
-22/6/7  加入多线程下载，简化代码，函数式编程<br>
-22/6/18     优化代码,解耦合,尝试使用tkinter做界面
+22/6/7  加入多线程下载，简化代码，函数编程<br>
 
 ***
 

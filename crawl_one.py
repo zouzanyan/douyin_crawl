@@ -4,11 +4,13 @@ import requests
 
 
 def fixname(filename, limit=100):
-    character = r'[\n\r\t?*/\\|:><"]'
-    filename = re.sub(character, "", filename)  # 用正则表达式去除windows下的特殊字符，这些字符不能用在文件名
-    if filename is None or "":
+    if filename is None:
         filename = str(time.time())  # 如果视频简介为空则将时间戳设为文件名
         return filename
+
+    character = r'[\n\r\t?*/\\|:><"]'
+    filename = re.sub(character, "", filename)  # 用正则表达式去除windows下的特殊字符，这些字符不能用在文件名
+
     if len(filename) <= limit:  # 防止文件名过长,linux 和 windows 文件名限制约为 255 个字符
         return filename
     else:
@@ -29,12 +31,8 @@ def crawl_main(number):
                              'like Gecko) Chrome/80.0.3987.116 Mobile Safari/537.36',
                'referer': 'https://www.douyin.com/'}
 
-    number = re.findall('v.douyin.com/(.*?)/', number)
-    if not number:
-        raise Exception("输入url异常")
-    else:
-        number = number[0]
-
+    number = re.findall('v.douyin.com/(.*?)/', number)  # 匹配粘贴目标包含的抖音视频id
+    number = number[0]
 
     url = f'https://v.douyin.com/{number}/'
 

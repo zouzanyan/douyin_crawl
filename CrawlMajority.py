@@ -22,8 +22,8 @@ class CarwlMajority:
         url = re.findall('v.douyin.com/(.*?)/', user_in)  # 分享链接形式(目前只在手机上发现2022/7/31)
         if url:
             url = 'https://v.douyin.com/' + str(url[0])  # 手机链接分享链接形式
-            a = requests.get(url=url, headers=self.headers).url
-            sec_uid = re.findall('sec_uid=(.*?)&', a)
+            data = requests.get(url=url, headers=self.headers).url
+            sec_uid = re.findall('sec_uid=(.*?)&', data)
             self.sec_uid = sec_uid[0]
         else:
             sec_uid = re.findall('douyin.com/user/(.*)\?', user_in)  # 电脑主页链接形式
@@ -81,6 +81,6 @@ class CarwlMajority:
 
 
 if __name__ == '__main__':
-    url = input('---------------请在此粘贴您的链接---------------\n')
+    userurl = input('---------------请在此粘贴您的链接---------------\n')
     a = CarwlMajority()
-    a.crawl_main(url)
+    a.crawl_main(userurl)

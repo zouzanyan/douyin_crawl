@@ -15,7 +15,6 @@ Python 3.10.4 (tags/v3.10.4:9d38120, Mar 23 2022, 23:13:41) [MSC v.1929 64 bit (
 pip install requests  (安装requests模块)
 批量爬取暂不支持图集
 
-GUI.py依赖于其他两个模块,另两个模块互相独立
 
 
 
@@ -30,14 +29,15 @@ GUI.py依赖于其他两个模块,另两个模块互相独立
 ######手机端
 https://v.douyin.com/YJqwKvm/
 ######电脑端
-https://www.douyin.com/user/MS4wLjABAAAAMWnCuaM1kNwVyN5P1f9OL5w1zWVuCGImgfF8j4rYv0Y
+https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91qlJU?vid=7124859220079561995
 ***
 ### 进度
 
 22/6/1  加入对抖音图集爬取的功能 <br>
 22/6/5  加入对抖音用户作品的批量爬取  <br>
 22/6/7  加入多线程下载，简化代码，函数编程<br>
-22/7/31 维护
+22/7/31 维护 <br>
+22/9/4 代码修改维护
 
 ***
 

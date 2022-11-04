@@ -19,7 +19,13 @@ pip install requests  (安装requests模块)
 
 
 ### 使用说明
-运行主函数main.py,根据终端提示进行操作.爬取的视频放在项目目录的的文件夹下
+crawl_one是爬取单个视频或图集程序
+
+crawlMajority是批量爬取所有视频程序
+
+根据终端提示进行操作.爬取的视频放在项目目录的的文件夹下
+
+
 ##### 单视频粘贴例子(支持模糊)
 4.69 bAT:/ “相遇不一定有结局，但一定会有意义，在追逐月亮的途中，我也曾被月光照亮过.”  https://v.douyin.com/YJVajNq/ 复制此链接，打开Dou音搜索，直接观看视频！
 
@@ -30,6 +36,7 @@ pip install requests  (安装requests模块)
 https://v.douyin.com/YJqwKvm/
 ######电脑端
 https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91qlJU?vid=7124859220079561995
+https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91qlJU
 ***
 ### 进度
 
@@ -37,7 +44,7 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 22/6/5  加入对抖音用户作品的批量爬取  <br>
 22/6/7  加入多线程下载，简化代码，函数编程<br>
 22/7/31 维护 <br>
-22/9/4 代码修改维护
+22/11/4 代码修改维护
 
 ***
 

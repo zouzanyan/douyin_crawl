@@ -27,7 +27,9 @@ class CarwlMajority:
             self.sec_uid = sec_uid[0]
         else:
             sec_uid = re.findall('douyin.com/user/(.*)\?', user_in)  # 电脑主页链接形式
-            if not sec_uid:
+            if len(sec_uid) == 0:
+                sec_uid = re.findall('douyin.com/user/(.*)', user_in)
+            if len(sec_uid) == 0:
                 raise Exception("url格式异常,请查看README文档")
             self.sec_uid = sec_uid[0]
 

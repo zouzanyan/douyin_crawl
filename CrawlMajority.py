@@ -57,7 +57,7 @@ class CarwlMajority:
         print('共解析到' + str(self.video_number) + '个视频')
 
     def threadpooldown(self):
-        with ThreadPoolExecutor(100) as executor:  # 创建一个容纳100个线程的线程池
+        with ThreadPoolExecutor(10) as executor:  # 创建一个容纳10个线程的线程池
             for i in self.video_info_dict:
                 executor.map(self.download, {i}, {self.video_info_dict[i]})
 

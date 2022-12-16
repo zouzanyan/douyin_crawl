@@ -72,7 +72,8 @@ class CarwlMajority:
         print('程序启动...')
         self.get_url(user_in)
         self.get_video_info()
-        os.mkdir(f'{self.author_name}')  # 新建下载文件夹
+        if not os.path.exists(self.author_name):
+            os.mkdir(f'{self.author_name}')
         os.chdir(f'./{self.author_name}/')
         print('正在批量下载,请耐心等待...')
         self.threadpooldown()

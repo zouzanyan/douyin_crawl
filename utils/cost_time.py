@@ -2,7 +2,7 @@ import time
 import functools
 
 
-# 计算函数执行时间的装饰器
+# 计算函数执行时间
 def cost_time(text):
     def decorator(func):
         @functools.wraps(func)

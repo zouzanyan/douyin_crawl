@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from utils.FixNameUtil import FixNameUtil
 
 # 暂时失效2022/12/27
+# fixing
 class CarwlMajority:
     def __init__(self):
         self.video_number = 0  # 视频数量

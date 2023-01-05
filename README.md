@@ -44,7 +44,7 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 22/6/5  加入对抖音用户作品的批量爬取  <br>
 22/6/7  加入多线程下载，简化代码，函数编程<br>
 22/7/31 维护 <br>
-22/11/4 代码修改维护
+22/11/4 代码修改维护<br>
 23/1/5 代码维护,主页批量爬取修复(目前批量爬取方案需要使用用户cookie)
 
 ***

@@ -6,6 +6,7 @@ class FixNameUtil:
     def __init__(self):
         pass
 
+    # todo: 两个视频的视频的名字(取的视频简介)一样,未想到合适的修复方法
     @staticmethod
     def fixname(filename):
         limit = 100

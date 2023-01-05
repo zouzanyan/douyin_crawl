@@ -13,7 +13,7 @@ Python 3.10.4 (tags/v3.10.4:9d38120, Mar 23 2022, 23:13:41) [MSC v.1929 64 bit (
 除requests模块,其他模块均为内置模块
 
 pip install requests  (安装requests模块)
-批量爬取暂不支持图集
+pip install pyyaml (安装yaml模块,配置文件)
 
 
 
@@ -21,7 +21,7 @@ pip install requests  (安装requests模块)
 ### 使用说明
 crawl_one是爬取单个视频或图集程序
 
-crawlMajority是批量爬取所有视频程序
+crawlMajority是批量爬取所有视频程序,application.yml下粘贴抖音cookie
 
 根据终端提示进行操作.爬取的视频放在项目目录的的文件夹下
 
@@ -45,6 +45,7 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 22/6/7  加入多线程下载，简化代码，函数编程<br>
 22/7/31 维护 <br>
 22/11/4 代码修改维护
+23/1/5 代码维护,主页批量爬取修复(目前批量爬取方案需要使用用户cookie)
 
 ***
 

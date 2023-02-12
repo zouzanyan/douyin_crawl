@@ -1,6 +1,7 @@
 import re
 
 import requests
+import yaml
 
 from utils.FixNameUtil import FixNameUtil
 from utils.cost_time import cost_time
@@ -14,11 +15,13 @@ def user_input():
 # 爬取主程序
 @cost_time('')
 def crawl_main(number):
+    config = yaml.load(open('application.yml'), yaml.Loader)
     # 请求头
     headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; ''Nexus 5 Build/MRA58N) AppleWebKit/537.36 ('
                              'KHTML, '
                              'like Gecko) Chrome/80.0.3987.116 Mobile Safari/537.36',
-               'referer': 'https://www.douyin.com/'}
+               'referer': 'https://www.douyin.com/',
+               'cookie': config.get('cookie')}
 
     number = re.findall('v.douyin.com/(.*?)/', number)  # 匹配粘贴目标包含的抖音视频id
     number = number[0]

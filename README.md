@@ -46,6 +46,7 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 22/7/31 维护 <br>
 22/11/4 代码修改维护
 23/1/5 代码维护,主页批量爬取修复(目前批量爬取方案需要使用用户cookie)
+23/2/12 目前单视频和主页批量爬取都需要cookie
 
 ***
 

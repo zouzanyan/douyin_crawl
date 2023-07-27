@@ -58,8 +58,8 @@ class CarwlMajority:
             listpage = requests.get(url=pageurl, headers=self.headers).text
             listpage = json.loads(listpage)
 
-            if listpage["has_more"] == 0:
-                break
+            # if listpage["has_more"] == 0:
+            #     break
 
             if max_cursor == 0:
                 self.author_name = listpage['aweme_list'][0]['author']['nickname']  # 获取作者名称
@@ -74,6 +74,9 @@ class CarwlMajority:
                 #  图片收集
                 else:
                     self.picture_info_list += list(map(lambda x: x["url_list"][-1], i1["images"]))
+
+            if listpage["has_more"] == 0:
+                break
 
         print('共解析到' + str(len(self.video_info_list)) + '个视频,' + str(len(self.picture_info_list)) + '张图片')
 

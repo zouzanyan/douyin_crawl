@@ -17,7 +17,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```text
 系统需要安装node环境(https://nodejs.org/)
 
-pip install execjs (python调用js)
+pip install PyExecJS (python调用js)
 pip install requests  (同步http客户端)
 pip install aiohttp (异步http客户端)
 

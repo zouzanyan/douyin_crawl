@@ -6,8 +6,8 @@ import time
 import requests
 import aiohttp
 
-import utils.XBogusUtil
-import utils.Sleep
+from utils import XBogusUtil
+from utils import Sleep
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
@@ -48,7 +48,7 @@ class CrawlHome(object):
             exit("粘贴的用户主页地址格式错误")
         home_url = f'https://www.douyin.com/aweme/v1/web/aweme/post/?aid=6383&sec_user_id={sec_uid}&count=35&max_cursor={cursor}&cookie_enabled=true&platform=PC&downlink=10'
 
-        xbs = utils.XBogusUtil.generate_url_with_xbs(home_url, headers.get('User-Agent'))
+        xbs = XBogusUtil.generate_url_with_xbs(home_url, headers.get('User-Agent'))
         url = home_url + '&X-Bogus=' + xbs
         json_str = self.session.get(url, headers=headers).json()
         # print(json_str)
@@ -58,7 +58,7 @@ class CrawlHome(object):
         while 1:
 
             home_url = f'https://www.douyin.com/aweme/v1/web/aweme/post/?aid=6383&sec_user_id={sec_uid}&count=35&max_cursor={cursor}&cookie_enabled=true&platform=PC&downlink=10'
-            xbs = utils.XBogusUtil.generate_url_with_xbs(home_url, headers.get('User-Agent'))
+            xbs = XBogusUtil.generate_url_with_xbs(home_url, headers.get('User-Agent'))
             url = home_url + '&X-Bogus=' + xbs
             json_str = self.session.get(url, headers=headers).json()
             cursor = json_str["max_cursor"]  # 当页页码
@@ -78,7 +78,7 @@ class CrawlHome(object):
 
             # 随机睡眠
             if sleep:
-                utils.Sleep.random_sleep()
+                Sleep.random_sleep()
 
 
 async def save_to_disk(video_list, picture_list):

@@ -1,4 +1,5 @@
 import asyncio
+import configparser
 import os
 import re
 import time
@@ -9,9 +10,24 @@ import aiohttp
 from utils import XBogusUtil
 from utils import Sleep
 
+# 读取配置文件
+try:
+    config = configparser.RawConfigParser()
+    config.read('config.ini')
+    con = dict(config.items('douyin'))
+    if con is {}:
+        raise Exception
+    cookie = con.get('cookie')
+    if cookie == '':
+        raise Exception
+except Exception as e:
+    exit('请检查当前目录下的config.ini文件配置')
+
+
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
     'Referer': 'https://www.douyin.com/',
+    'Cookie': cookie
 }
 
 

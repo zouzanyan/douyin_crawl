@@ -57,7 +57,7 @@ class CrawlHome(object):
             return
 
     # 默认开启睡眠
-    def get_home_video(self, user_in, sleep=False):
+    def get_home_video(self, user_in, sleep=True):
         sec_uid = self.analyze_user_input(user_in)
         cursor = 0
         if sec_uid is None:
@@ -117,18 +117,18 @@ async def download_video(session, filename, url):
     # await asyncio.sleep(0.5)
     async with session.get(url) as response:
         if response.status == 200:
-            data = await response.read()
             with open(f'{filename}.mp4', "wb") as f:
-                f.write(data)
+                async for chunk in response.content.iter_chunked(1024):
+                    f.write(chunk)
 
 
 async def download_pic(session, filename, url):
     # await asyncio.sleep(0.3)
     async with session.get(url) as response:
         if response.status == 200:
-            data = await response.read()
             with open(f'{filename}.jpg', "wb") as f:
-                f.write(data)
+                async for chunk in response.content.iter_chunked(1024):
+                    f.write(chunk)
 
 
 def download_main(author_name, video_list, picture_list):

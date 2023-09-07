@@ -100,16 +100,19 @@ class CrawlHome(object):
 async def save_to_disk(video_list, picture_list):
     count = 1
     tasks = []
+    semaphore = asyncio.Semaphore(2)
     async with aiohttp.ClientSession(headers=headers) as session:
         for i in video_list:
             url = i.get('video_url')
-            task = asyncio.ensure_future(download_video(session, count, url))
-            tasks.append(task)
-            count += 1
+            async with semaphore:
+                task = asyncio.ensure_future(download_video(session, count, url))
+                tasks.append(task)
+                count += 1
         for i in picture_list:
-            task = asyncio.ensure_future(download_pic(session, count, i))
-            tasks.append(task)
-            count += 1
+            async with semaphore:
+                task = asyncio.ensure_future(download_pic(session, count, i))
+                tasks.append(task)
+                count += 1
         await asyncio.gather(*tasks)
 
 

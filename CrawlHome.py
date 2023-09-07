@@ -23,7 +23,6 @@ try:
 except Exception as e:
     exit('请检查当前目录下的config.ini文件配置')
 
-
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
     'Referer': 'https://www.douyin.com/',
@@ -101,7 +100,7 @@ async def save_to_disk(video_list, picture_list):
     count = 1
     tasks = []
     semaphore = asyncio.Semaphore(2)
-    async with aiohttp.ClientSession(headers=headers) as session:
+    async with aiohttp.ClientSession(headers=headers, timeout=None) as session:
         for i in video_list:
             url = i.get('video_url')
             async with semaphore:
@@ -118,20 +117,26 @@ async def save_to_disk(video_list, picture_list):
 
 async def download_video(session, filename, url):
     # await asyncio.sleep(0.5)
-    async with session.get(url) as response:
-        if response.status == 200:
-            with open(f'{filename}.mp4', "wb") as f:
-                async for chunk in response.content.iter_chunked(1024):
-                    f.write(chunk)
+    try:
+        async with session.get(url) as response:
+            if response.status == 200:
+                with open(f'{filename}.mp4', "wb") as f:
+                    async for chunk in response.content.iter_chunked(1024):
+                        f.write(chunk)
+    except Exception as ex:
+        print(filename + ' ' + repr(e))
 
 
 async def download_pic(session, filename, url):
     # await asyncio.sleep(0.3)
-    async with session.get(url) as response:
-        if response.status == 200:
-            with open(f'{filename}.jpg', "wb") as f:
-                async for chunk in response.content.iter_chunked(1024):
-                    f.write(chunk)
+    try:
+        async with session.get(url) as response:
+            if response.status == 200:
+                with open(f'{filename}.jpg', "wb") as f:
+                    async for chunk in response.content.iter_chunked(1024):
+                        f.write(chunk)
+    except Exception as ex:
+        print(filename + ' ' + repr(e))
 
 
 def download_main(author_name, video_list, picture_list):

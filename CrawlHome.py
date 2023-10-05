@@ -100,7 +100,7 @@ async def save_to_disk(video_list, picture_list):
     count = 1
     tasks = []
     semaphore = asyncio.Semaphore(2)
-    async with aiohttp.ClientSession(headers=headers, timeout=None) as session:
+    async with aiohttp.ClientSession(headers=headers) as session:
         for i in video_list:
             url = i.get('video_url')
             async with semaphore:
@@ -124,7 +124,7 @@ async def download_video(session, filename, url):
                     async for chunk in response.content.iter_chunked(1024):
                         f.write(chunk)
     except Exception as ex:
-        print(filename + ' ' + repr(e))
+        print(ex)
 
 
 async def download_pic(session, filename, url):
@@ -136,7 +136,8 @@ async def download_pic(session, filename, url):
                     async for chunk in response.content.iter_chunked(1024):
                         f.write(chunk)
     except Exception as ex:
-        print(filename + ' ' + repr(e))
+        print(ex)
+
 
 
 def download_main(author_name, video_list, picture_list):

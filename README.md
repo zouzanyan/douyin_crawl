@@ -1,5 +1,5 @@
 # douyin_crawl
-抖音视频批量爬取
+抖音视频,图片批量爬取
 
 开发工具
 windows10
@@ -26,8 +26,11 @@ pip install aiohttp (异步http客户端)
 ### 使用说明
 
 ```text
-获取cookie方式
-登录网页版抖音,F12网页调试,任意找到一个请求包中的cookie信息(很长一串),并粘贴至config.ini
+1. 运行前请先关闭chrome浏览器!!!否则卡住无法获取浏览器里面的cookie
+2. 从chrome浏览器中获取cookie保存为config.ini文件
+python get_cookie_from_chrome.py
+3. 爬取主程序,按照命令行操作进行
+python CrawlHome.py
 ```
 
 ```text

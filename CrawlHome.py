@@ -56,7 +56,7 @@ class CrawlHome(object):
             return
 
     # 默认开启睡眠
-    def get_home_video(self, user_in, sleep=True):
+    def get_home_video(self, user_in, sleep=False):
         sec_uid = self.analyze_user_input(user_in)
         cursor = 0
         if sec_uid is None:
@@ -99,19 +99,20 @@ class CrawlHome(object):
 async def save_to_disk(video_list, picture_list):
     count = 1
     tasks = []
-    semaphore = asyncio.Semaphore(2)
+    # 协程限制5个并发
+    # semaphore = asyncio.Semaphore(5)
     async with aiohttp.ClientSession(headers=headers) as session:
         for i in video_list:
             url = i.get('video_url')
-            async with semaphore:
-                task = asyncio.ensure_future(download_video(session, count, url))
-                tasks.append(task)
-                count += 1
+            # async with semaphore:
+            task = asyncio.ensure_future(download_video(session, count, url))
+            tasks.append(task)
+            count += 1
         for i in picture_list:
-            async with semaphore:
-                task = asyncio.ensure_future(download_pic(session, count, i))
-                tasks.append(task)
-                count += 1
+            # async with semaphore:
+            task = asyncio.ensure_future(download_pic(session, count, i))
+            tasks.append(task)
+            count += 1
         await asyncio.gather(*tasks)
 
 
@@ -137,7 +138,6 @@ async def download_pic(session, filename, url):
                         f.write(chunk)
     except Exception as ex:
         print(ex)
-
 
 
 def download_main(author_name, video_list, picture_list):

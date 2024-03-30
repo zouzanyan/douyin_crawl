@@ -41,14 +41,14 @@ class CrawlHome(object):
 
     def analyze_user_input(self, user_in):
         try:
-            u = re.search('user/([-\w]+)', user_in)
+            u = re.search(r'user/([-\w]+)', user_in)
             if u:
                 return u.group(1)
-            u = re.search('https://v.douyin.com/(\w+)/', user_in)
+            u = re.search(r'https://v.douyin.com/(\w+)/', user_in)
             if u:
                 url = u.group(0)
                 res = self.session.get(url=url, headers=headers).url
-                uid = re.search('user/([-\w]+)', res)
+                uid = re.search(r'user/([-\w]+)', res)
                 if uid:
                     return uid.group(1)
 
@@ -144,7 +144,10 @@ def download_main(author_name, video_list, picture_list):
     if not os.path.exists(author_name):
         os.mkdir(author_name)
     os.chdir(author_name)
-    loop = asyncio.get_event_loop()
+    # loop = asyncio.get_event_loop()
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     loop.run_until_complete(save_to_disk(video_list, picture_list))
     os.chdir("..")
 

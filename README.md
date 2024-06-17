@@ -19,6 +19,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ### 使用说明
 
 ```text
+需要安装Node.js环境(https://nodejs.org/)
 需要安装以下Python库
 
 pip install PyExecJS (Python调用JavaScript)

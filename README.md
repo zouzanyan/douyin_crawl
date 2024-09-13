@@ -44,7 +44,7 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 ```
 
 ## 配置和运行截图
-* 网页F12随便一个复制一个登陆后的http数据包，很长的一般就是
+* 网页F12随便复制一个登陆后的http数据包，很长的一般就是
 ![img_1.png](运行截图/img_1.png)
 * 粘贴到config.ini文件里面
 ![img_2.png](运行截图/img_2.png)

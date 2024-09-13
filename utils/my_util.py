@@ -14,7 +14,7 @@ def sanitize_filename(filename, max_length=100, ellipsis='...'):
     """ 去除操作系统不支持的文件名字符 """
     if filename.__len__() == 0:
         return uuid.uuid4()
-    invalid_chars = r'<>:"/\\|?*'
+    invalid_chars = '<>:"/\\|?*\n\t\r'
     sanitized_filename = ''.join('' if c in invalid_chars else c for c in filename)
     sanitized_filename = sanitized_filename.strip(' .')
     if len(sanitized_filename) > max_length:

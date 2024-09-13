@@ -25,12 +25,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 pip install PyExecJS (Python调用JavaScript)
 pip install requests  (同步http客户端)
 pip install tqdm (进度条工具)
-pip install browser-cookie3 (爬取浏览器Cookie工具)
 pip install loguru (Python日志工具)
 
 
-get_cookie_from_chrome.py用于获取cookie,crawl_home.py是爬取主程序
-python get_cookie_from_chrome.py
+crawl_home.py是爬取主程序
 python crawl_home.py 
 ```
 
@@ -45,8 +43,13 @@ https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91q
 https://www.douyin.com/user/MS4wLjABAAAAK8yyhMzdNAtyWqupVvVBXB_4bmr6DMAZ0zpGn91qlJU
 ```
 
-## 运行截图
+## 配置和运行截图
+* 网页F12随便一个复制一个登陆后的http数据包，很长的一般就是
+![img_1.png](运行截图/img_1.png)
+* 粘贴到config.ini文件里面
+![img_2.png](运行截图/img_2.png)
+* 运行截图
+![img.png](运行截图/img.png)
 
-![img.png](img.png)
 
 其他疑问请加qq1406823510

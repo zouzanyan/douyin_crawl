@@ -3,7 +3,6 @@ import os
 import re
 from functools import lru_cache
 
-import browser_cookie3
 import requests
 from loguru import logger
 from tqdm import tqdm
@@ -21,10 +20,10 @@ def read_cookie_from_file():
             raise Exception
         cookie = con.get('cookie')
         if cookie == '':
-            logger.error('cookie值为空，请尝试手动填入cookie或者运行get_cookie_from_chrome.py')
+            logger.error('cookie值为空，请尝试手动填入cookie')
             raise Exception
-    except Exception:
-        logger.error('请尝试运行 python get_cookie_from_chrome.py')
+    except Exception as e:
+        logger.error(e)
         exit('请检查当前目录下的config.ini文件配置')
     return cookie
 
@@ -61,7 +60,6 @@ def analyze_user_input(user_in: str):
 
 
 def crawl_media(user_in: str):
-
     # douyin不使用代理
     os.environ['NO_PROXY'] = 'douyin.com'
     video_list = []
@@ -150,4 +148,3 @@ if __name__ == '__main__':
         if user_input.lower() == "exit":
             break
         crawl_media(user_input)
-

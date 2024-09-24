@@ -5,6 +5,7 @@ from functools import lru_cache
 
 import requests
 from loguru import logger
+from requests.adapters import HTTPAdapter
 from tqdm import tqdm
 
 from utils import XBogusUtil
@@ -38,6 +39,8 @@ def get_global_session():
         'Referer': 'https://www.douyin.com/'
     })
     s.cookies.update({'Cookie': read_cookie_from_file()})
+    s.mount('http://', HTTPAdapter(max_retries=3))
+    s.mount('https://', HTTPAdapter(max_retries=3))
     return s
 
 

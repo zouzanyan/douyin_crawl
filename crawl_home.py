@@ -225,3 +225,4 @@ if __name__ == '__main__':
     finally:
         crawler.crawler_request.close()
         logger.info("程序已退出")
+        

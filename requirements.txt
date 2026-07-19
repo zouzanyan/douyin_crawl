@@ -1,3 +1,2 @@
-requests
-gmssl
-tqdm
+gmssl>=3.2.2
+requests>=2.31.0

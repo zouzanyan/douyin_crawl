@@ -17,62 +17,59 @@ jobs:
           - os: windows-latest
             target: Windows
             ext: .exe
+            archive: zip
           - os: ubuntu-latest
             target: Linux
             ext: ""
+            archive: tar.gz
           - os: macos-latest
             target: macOS
             ext: ""
-    
+            archive: tar.gz
+
     runs-on: ${{ matrix.os }}
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
-    
+        python-version: '3.12'
+        cache: pip
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pyinstaller
-    
-    - name: Build executable (Interactive)
+
+    - name: Build executable
+      shell: bash
       run: |
-        pyinstaller --onefile --name douyin_downloader${{ matrix.ext }} douyin_interactive.py
-    
-    - name: Build executable (CLI)
-      run: |
-        pyinstaller --onefile --name douyin_cli${{ matrix.ext }} douyin_cli.py
-    
+        pyinstaller --onefile --noconfirm --clean \
+          --name douyin_downloader${{ matrix.ext }} \
+          --collect-all gmssl \
+          __main__.py
+
     - name: Package files
       shell: bash
       run: |
         mkdir -p release
-        cp dist/douyin_downloader${{ matrix.ext }} release/
-        cp dist/douyin_cli${{ matrix.ext }} release/
-        cp -r core release/
-        cp -r util release/
-        cp requirements.txt release/
+        cp "dist/douyin_downloader${{ matrix.ext }}" release/
         cp README.md release/
-        cp LICENSE release/
-    
-    - name: Create archive (Windows)
-      if: matrix.os == 'windows-latest'
+
+    - name: Create archive
+      shell: bash
       run: |
         cd release
-        7z a ../douyin_downloader_${{ matrix.target }}.zip *
-    
-    - name: Create archive (Unix)
-      if: matrix.os != 'windows-latest'
-      run: |
-        cd release
-        tar -czf ../douyin_downloader_${{ matrix.target }}.tar.gz *
-    
+        if [ "${{ matrix.archive }}" = "zip" ]; then
+          7z a "../douyin_downloader_${{ matrix.target }}.zip" .
+        else
+          tar -czf "../douyin_downloader_${{ matrix.target }}.tar.gz" .
+        fi
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
@@ -83,20 +80,19 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v4
       with:
         path: artifacts
         merge-multiple: true
-    
+
     - name: List artifacts
-      run: |
-        ls -la artifacts/
-    
+      run: ls -la artifacts/
+
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: artifacts/*
